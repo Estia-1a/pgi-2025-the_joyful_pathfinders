@@ -44,7 +44,7 @@ void first_pixel(char* filename) {
     }
 }
 void tenth_pixel(char *source_path){
-    printf("tenth_pixel ");
+    printf("tenth_pixel");
 
     unsigned char* data;
     int R, G, B;
