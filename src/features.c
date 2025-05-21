@@ -16,7 +16,7 @@ void helloWorld() {
 }
 
 void dimension(char* filename) {
-    printf("Dimension %s\n", filename );
+    printf("dimension");
 
     unsigned char* data;
     int width, height, channel_count;
@@ -25,7 +25,7 @@ void dimension(char* filename) {
         printf("Erreur avec le fichier: %s \n", filename);
     }
     else {
-        printf("%s : %d, %d \n", filename, width, height);
+        printf(": %d, %d \n", width, height);
         free_image_data(data);
     }
 }
