@@ -57,3 +57,17 @@ void tenth_pixel(char *source_path){
         printf(": %d, %d, %d", R, G, B);
     }
 }
+void second_line(char* filename) {
+    printf("second_line");
+
+    unsigned char* data;
+    int R, G, B;
+
+    if (read_image_data(filename, &data, &R, &G, &B) == 0) {
+        printf("Erreur avec le fichier: %s \n", filename);
+    }
+    else {
+        R=data[3], G=data[4], B=data[5];
+        printf(": %d, %d, %d\n", R, G, B);
+    }
+}
