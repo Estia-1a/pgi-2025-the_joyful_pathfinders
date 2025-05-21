@@ -29,3 +29,18 @@ void dimension(char* filename) {
         free_image_data(data);
     }
 }
+
+void tenth_pixel(char *source_path){
+    printf("tenth_pixel ");
+
+    unsigned char* data;
+    int R, G, B;
+
+    if (read_image_data(source_path, &data, &R, &G, &B) == 0) {
+        printf("Erreur avec le fichier: %s \n", source_path);
+    }
+    else {
+        R=data[27], G=data[28], B=data[29];
+        printf(": %d, %d, %d", R, G, B);
+    }
+}
