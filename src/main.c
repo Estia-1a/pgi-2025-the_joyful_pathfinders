@@ -30,9 +30,13 @@ int main(int argc, char **argv) {
   
   if ( strncmp( configuration.command, "helloworld", 10 ) == 0 ) {
     helloWorld();
-  } else if (strncmp(configuration.command, "dimension", 3 ) == 0 ) {
+  } 
+  else if (strncmp(configuration.command, "dimension", 3 ) == 0 ) {
     dimension(configuration.filenames[0]);
   }
-  
+  else if ( strncmp( configuration.command, "first_pixel", 11 ) == 0 ) {
+    first_pixel(configuration.filenames[0]);
+  }
+
   return 0;
 }
