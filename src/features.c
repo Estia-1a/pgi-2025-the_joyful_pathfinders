@@ -61,13 +61,15 @@ void second_line(char* filename) {
     printf("second_line");
 
     unsigned char* data;
-    int R, G, B;
+    int R, G, B, formule, width;
+
+    formule = width*3;
 
     if (read_image_data(filename, &data, &R, &G, &B) == 0) {
         printf("Erreur avec le fichier: %s \n", filename);
     }
     else {
-        R=data[3], G=data[4], B=data[5];
+        R=data[formule], G=data[formule+1], B=data[formule+2];
         printf(": %d, %d, %d\n", R, G, B);
     }
 }
