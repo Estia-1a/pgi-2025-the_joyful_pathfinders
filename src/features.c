@@ -73,3 +73,33 @@ void second_line(char* filename) {
         printf(": %d, %d, %d\n", R, G, B);
     }
 }
+
+void max_pixel(char* filename) {
+    printf("max_pixel");
+    unsigned char* data;
+    int max_sum = 0;
+    int max_x = 0, max_y = 0;
+    pixelRGB max_pixel_rgb = {0, 0, 0};  // Fixed: proper variable declaration
+    int height, width, channel_count, x, y;
+    
+    if (read_image_data(filename, &data, &width, &height, &channel_count) == 0) {
+        printf("Erreur avec le fichier: %s \n", filename);
+        return;
+    }
+    
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            pixelRGB current_pixel = getPixel(data, width, channel_count, x, y);
+            int current_sum = current_pixel.R + current_pixel.G + current_pixel.B;
+            
+            if (current_sum > max_sum) {
+                max_sum = current_sum;
+                max_x = x;
+                max_y = y;
+                max_pixel_rgb = current_pixel;
+            }
+        }
+    }
+    
+    printf(" (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel_rgb.R, max_pixel_rgb.G, max_pixel_rgb.B);
+}

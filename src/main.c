@@ -43,5 +43,8 @@ int main(int argc, char **argv) {
   else if ( strncmp( configuration.command, "second_line", 11 ) == 0 ) {
     second_line(configuration.filenames[0]);
   }
+  else if ( strncmp( configuration.command, "max_pixel", 11 ) == 0 ) {
+    max_pixel(configuration.filenames[0]);
+  }
   return 0;
 }
