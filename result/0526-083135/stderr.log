@@ -1,0 +1,17 @@
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.c: In function ‘print_pixel’:
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.c:23:49: error: ‘source_path’ undeclared (first use in this function)
+   23 |         printf("Erreur avec le fichier: %s \n", source_path);
+      |                                                 ^~~~~~~~~~~
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.c:23:49: note: each undeclared identifier is reported only once for each function it appears in
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.c:27:47: error: expected ‘;’ before ‘}’ token
+   27 |         printf("Erreur avec les coordonnées ")
+      |                                               ^
+      |                                               ;
+   28 |     }
+      |     ~                                          
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:121: CMakeFiles/freud.dir/src/utils.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
