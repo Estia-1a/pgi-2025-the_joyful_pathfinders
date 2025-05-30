@@ -20,11 +20,11 @@ void print_pixel(char *filename, int x, int y){
     int width, height, channels;
     
     if(read_image_data(filename, &data, &width, &height, &channels) != 0){
-        printf("Erreur avec le fichier: %s \n", source_path);
+        printf("Erreur avec le fichier");
     }
     pixelRGB* px = get_pixel(data, width, height, channels, x, y);
     if (px == NULL) {
-        printf("Erreur avec les coordonnées ")
+        printf("Erreur avec les coordonnées ");
     }
 
     printf("print_pixel (%d, %d): %d, %d, %d\n", x, y, px->R, px->G, px->B);
