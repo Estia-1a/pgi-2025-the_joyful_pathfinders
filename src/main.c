@@ -58,5 +58,14 @@ int main(int argc, char **argv) {
     char component = configuration.arguments[0][0]; 
     max_component(configuration.filenames[0], component);
 }
+else if ( strcmp( configuration.command, "color_red") == 0 ) {
+  color_red(configuration.filenames[0]);
+}
+else if ( strcmp( configuration.command, "color_green") == 0 ) {
+  color_green(configuration.filenames[0]);
+}
+else if ( strcmp( configuration.command, "color_blue") == 0 ) {
+  color_blue(configuration.filenames[0]);
+}
   return 0;
 }
