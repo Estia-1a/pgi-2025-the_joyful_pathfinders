@@ -104,5 +104,23 @@ void max_pixel(char* filename) {
 }
 
 void max_component(char *filename, char component){
-    
+
+    printf("max_component %c", component);
+
+    unsigned char* data;
+    int width, height, channels;
+
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+            printf("Erreur avec le fichier: %s\n", filename);
+        }
+
+    int max_value = -1;
+    int max_x = 0;
+    int max_y = 0;
+
+    for(int i=0; i< height; i++){
+        for (int j = 0; j < width; j++) {
+
+    }
+
 }
