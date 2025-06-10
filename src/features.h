@@ -13,4 +13,5 @@ void min_pixel (char* filename);
 void max_component(char * filename, char compoenent);
 void min_component(char * filename, char compoenent);
 void start_report(char *filename);
+void rotate_cw();
 #endif

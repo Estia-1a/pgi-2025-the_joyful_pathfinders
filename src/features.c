@@ -243,6 +243,10 @@ void start_report(char *filename){
 
     fprintf(f, "min_component B ");
     min_component(filename, 'B');
-    
+
     fclose(f); /*fermer le fichier texte*/
+}
+
+void rotate_cw(){
+    
 }
