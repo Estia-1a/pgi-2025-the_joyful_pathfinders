@@ -119,7 +119,7 @@ void max_component(char *filename, char component){
    
     for(int i=0; i< height; i++){
         for (int j = 0; j < width; j++) {
-            pixelRGB *px = get_pixel(data, width, height, channels, i, j);
+            pixelRGB *px = get_pixel(data, width, height, channels, j, i);
 
             int valeurmax = 0;
              if (component == 'R') {
