@@ -63,8 +63,8 @@ void second_line(char* filename) { /*Initialisation, prend le nom du fichier ima
     unsigned char* data;
     int R, G, B, formule, width, height, channels; /*R G et B stockent les valeurs de couleur du pixel. Formule va nous permettre d'acceder à la position du pixel dans le tableau data. width, height et channels correspondent aux dimensions de l'image*/
 
-    if (read_image_data(filename, &data, &width, &height, &channels) == 0) { /*Lis l'image et récupère ses dimensions qui sont stockées dans width, height et channels*/
-        printf("Erreur avec le fichier : %s \n", filename);
+    if (read_image_data(filename, &data, &R, &G, &B) == 0) {
+        printf("Erreur avec le fichier: %s \n", filename);
     }
     
     formule = width*3; /*On place cette formule ici car c'est read_image qui initialise width. Si je la met avant, width n'est pas initialisée.*/
@@ -78,7 +78,7 @@ void max_pixel(char* filename) {
     unsigned char* data;
     int max_sum = 0;
     int max_x = 0, max_y = 0;
-    pixelRGB max_pixel_rgb = {0, 0, 0};  // Fixed: proper variable declaration
+    pixelRGB max_pixel_rgb = {0, 0, 0};
     int height, width, channel_count, x, y;
     
     if (read_image_data(filename, &data, &width, &height, &channel_count) == 0) {
@@ -101,6 +101,36 @@ void max_pixel(char* filename) {
     }
     
     printf(" (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel_rgb.R, max_pixel_rgb.G, max_pixel_rgb.B);
+}
+
+void min_pixel(char* filename) {
+    printf("min_pixel");
+    unsigned char* data;
+    int min_sum = 256*3+1;
+    int min_x, min_y;
+    pixelRGB min_pixel_rgb;
+    int height, width, channel_count, x, y;
+    
+    if (read_image_data(filename, &data, &width, &height, &channel_count) == 0) {
+        printf("Erreur avec le fichier: %s \n", filename);
+        return;
+    }
+    
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            pixelRGB* current_pixel = get_pixel(data, width, height, channel_count, x, y);
+            int current_sum = current_pixel->R + current_pixel->G + current_pixel->B;
+            
+            if (current_sum < min_sum) {
+                min_sum = current_sum;
+                min_x = x;
+                min_y = y;
+                min_pixel_rgb = *current_pixel;
+            }
+        }
+    }
+    
+    printf(" (%d, %d): %d, %d, %d\n", min_x, min_y, min_pixel_rgb.R, min_pixel_rgb.G, min_pixel_rgb.B);
 }
 
 void max_component(char *filename, char component){
