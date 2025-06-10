@@ -57,17 +57,17 @@ void tenth_pixel(char *source_path){
         printf(": %d, %d, %d", R, G, B);
     }
 }
-void second_line(char* filename) { /*Initialisation, prend le nom du fichier image en argument*/
+void second_line(char* filename) { 
     printf("second_line");
 
     unsigned char* data;
-    int R, G, B, formule, width, height, channels; /*R G et B stockent les valeurs de couleur du pixel. Formule va nous permettre d'acceder à la position du pixel dans le tableau data. width, height et channels correspondent aux dimensions de l'image*/
+    int R, G, B, formule; 
 
     if (read_image_data(filename, &data, &R, &G, &B) == 0) {
         printf("Erreur avec le fichier: %s \n", filename);
     }
     
-    formule = width*3; /*On place cette formule ici car c'est read_image qui initialise width. Si je la met avant, width n'est pas initialisée.*/
+    formule = 1*3;
     R=data[formule], G=data[formule+1], B=data[formule+2];
     printf(": %d, %d, %d\n", R, G, B);
 
