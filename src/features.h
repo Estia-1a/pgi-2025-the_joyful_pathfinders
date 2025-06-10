@@ -10,6 +10,5 @@ void tenth_pixel (char *source_path);
 void second_line(char* filename);
 void max_pixel (char* filename);
 void min_pixel (char* filename);
-void max_component(char * filename, char component);
-void color_red(char * filename);
+void max_component(char * filename, char compoenent);
 #endif
