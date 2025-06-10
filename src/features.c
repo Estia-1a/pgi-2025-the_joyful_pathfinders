@@ -68,8 +68,8 @@ void second_line(char* filename) {
     }
     
     formule = 1*3; 
-    R=data[formule], G=data[formule+1], B=data[formule+2];
-    printf(": %d, %d, %d\n", R, G, B);
+        R=data[formule], G=data[formule+1], B=data[formule+2];
+        printf(": %d, %d, %d\n", R, G, B);
 
 }
 
