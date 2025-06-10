@@ -64,7 +64,7 @@ void second_line(char* filename) { /*Initialisation, prend le nom du fichier ima
     int R, G, B, formule, width, height, channels; /*R G et B stockent les valeurs de couleur du pixel. Formule va nous permettre d'acceder à la position du pixel dans le tableau data. width, height et channels correspondent aux dimensions de l'image*/
 
     if (read_image_data(filename, &data, &width, &height, &channels) == 0) { /*Lis l'image et récupère ses dimensions qui sont stockées dans width, height et channels*/
-        printf("Erreur avec le fichier: %s \n", filename);
+        printf("Erreur avec le fichier : %s \n", filename);
     }
     
     formule = width*3; /*On place cette formule ici car c'est read_image qui initialise width. Si je la met avant, width n'est pas initialisée.*/

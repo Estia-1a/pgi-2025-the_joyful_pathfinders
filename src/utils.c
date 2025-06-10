@@ -19,7 +19,7 @@ void print_pixel(char *filename, int x, int y){
     unsigned char *data = NULL;
     int width, height, channels;
     
-    if(read_image_data(filename, &data, &width, &height, &channels) != 0){
+    if(read_image_data(filename, &data, &width, &height, &channels) == 0){
         printf("Erreur avec le fichier");
     }
     pixelRGB* px = get_pixel(data, width, height, channels, x, y);
