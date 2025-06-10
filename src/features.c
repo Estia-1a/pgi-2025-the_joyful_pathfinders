@@ -102,3 +102,7 @@ void max_pixel(char* filename) {
     
     printf(" (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel_rgb.R, max_pixel_rgb.G, max_pixel_rgb.B);
 }
+
+void max_component(char *filename, char component){
+    
+}
