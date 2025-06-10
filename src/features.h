@@ -13,5 +13,7 @@ void min_pixel (char* filename);
 void max_component(char * filename, char compoenent);
 void min_component(char * filename, char compoenent);
 void start_report(char *filename);
-void rotate_cw();
+void color_red(char *filename);
+void color_green(char *filename);
+void color_blue(char *filename);
 #endif
