@@ -169,3 +169,40 @@ void max_component(char *filename, char component){
     }
     printf(" (%d, %d): %d\n", max_x, max_y, max_value);
 }
+
+void min_component(char *filename, char component){
+    printf("min_component %c", component);
+
+    unsigned char* data;
+    int width, height, channels;
+
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+            printf("Erreur avec le fichier: %s\n", filename);
+        }
+
+    int min_value = 256; /*On a repris la même structure que pour max_compennet mais on commence ici à 256.*/
+    int min_x = 0;
+    int min_y = 0;
+   
+    for(int i=0; i< height; i++){
+        for (int j = 0; j < width; j++) {
+            pixelRGB *px = get_pixel(data, width, height, channels, j, i);
+
+            int valeurmin = 0;
+             if (component == 'R') {
+                valeurmin = (*px).R;
+            } else if (component == 'G') {
+                valeurmin = (*px).G;
+            } else if (component == 'B') {
+                valeurmin = (*px).B;
+            }
+
+            if (valeurmin < min_value) {
+                min_value = valeurmin;
+                min_x = j;
+                min_y = i;
+            }
+        }
+    }
+    printf(" (%d, %d): %d\n", min_x, min_y, min_value);
+}
