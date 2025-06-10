@@ -247,6 +247,18 @@ void start_report(char *filename){
     fclose(f); /*fermer le fichier texte*/
 }
 
-void rotate_cw(){
+void rotate_cw(char *filename){
     
+    char *data
+    int width, height, channel_count;
+
+    int new_width=height;
+    int new_height=width; /*On créer ici des nouvelles dimensions pour l'image retournée.*/
+
+    for(int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            int newx=y;
+            int newy=x
+        }
+    }
 }
