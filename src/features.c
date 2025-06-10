@@ -169,3 +169,80 @@ void max_component(char *filename, char component){
     }
     printf(" (%d, %d): %d\n", max_x, max_y, max_value);
 }
+
+void min_component(char *filename, char component){
+    printf("min_component %c", component);
+
+    unsigned char* data;
+    int width, height, channels;
+
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+            printf("Erreur avec le fichier: %s\n", filename);
+        }
+
+    int min_value = 256; /*On a repris la même structure que pour max_compennet mais on commence ici à 256.*/
+    int min_x = 0;
+    int min_y = 0;
+   
+    for(int i=0; i< height; i++){
+        for (int j = 0; j < width; j++) {
+            pixelRGB *px = get_pixel(data, width, height, channels, j, i);
+
+            int valeurmin = 0;
+             if (component == 'R') {
+                valeurmin = (*px).R;
+            } else if (component == 'G') {
+                valeurmin = (*px).G;
+            } else if (component == 'B') {
+                valeurmin = (*px).B;
+            }
+
+            if (valeurmin < min_value) {
+                min_value = valeurmin;
+                min_x = j;
+                min_y = i;
+            }
+        }
+    }
+    printf(" (%d, %d): %d\n", min_x, min_y, min_value);
+}
+
+void start_report(char *filename){
+
+/*ouvrir le fichier*/
+    FILE *f = fopen("stat_report.txt", "w");
+
+/*les fonctions*/
+    fprintf(f, "max_pixel "); /*note: fprint permet d'ecrire du texte dans un fichier défini. On écrit ici dans le fichier f*/
+    max_pixel(filename); 
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_pixel ");
+    min_pixel(filename);
+    fprintf(f, "\n\n");
+
+    fprintf(f, "max_component R ");
+    max_component(filename, 'R');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "max_component G ");
+    max_component(filename, 'G');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "max_component B ");
+    max_component(filename, 'B');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_component R ");
+    min_component(filename, 'R');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_component G ");
+    min_component(filename, 'G');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_component B ");
+    min_component(filename, 'B');
+    
+    fclose(f); /*fermer le fichier texte*/
+}
