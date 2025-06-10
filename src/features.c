@@ -208,7 +208,41 @@ void min_component(char *filename, char component){
 }
 
 void start_report(char *filename){
-    char*data;
-    int width, height, channels;
+
+/*ouvrir le fichier*/
+    FILE *f = fopen("stat_report.txt", "w");
+
+/*les fonctions*/
+    fprintf(f, "max_pixel "); /*note: fprint permet d'ecrire du texte dans un fichier défini. On écrit ici dans le fichier f*/
+    max_pixel(filename); 
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_pixel ");
+    min_pixel(filename);
+    fprintf(f, "\n\n");
+
+    fprintf(f, "max_component R ");
+    max_component(filename, 'R');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "max_component G ");
+    max_component(filename, 'G');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "max_component B ");
+    max_component(filename, 'B');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_component R ");
+    min_component(filename, 'R');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_component G ");
+    min_component(filename, 'G');
+    fprintf(f, "\n\n");
+
+    fprintf(f, "min_component B ");
+    min_component(filename, 'B');
     
+    fclose(f); /*fermer le fichier texte*/
 }
