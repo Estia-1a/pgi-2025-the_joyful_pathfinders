@@ -28,35 +28,38 @@ int main(int argc, char **argv) {
    * If helloworld is a called command: freud.exe -f images/input/image.jpeg -c helloworld 
    */
   
-  if ( strncmp( configuration.command, "helloworld", 10 ) == 0 ) {
+  if ( strcmp( configuration.command, "helloworld") == 0 ) {
     helloWorld();
   } 
-  else if (strncmp(configuration.command, "dimension", 3 ) == 0 ) {
+  else if (strcmp(configuration.command, "dimension") == 0 ) {
     dimension(configuration.filenames[0]);
   }
-  else if ( strncmp( configuration.command, "first_pixel", 11 ) == 0 ) {
+  else if ( strcmp( configuration.command, "first_pixel") == 0 ) {
     first_pixel(configuration.filenames[0]);
   }
-  else if (strncmp(configuration.command, "tenth_pixel", 3 ) == 0 ) {
+  else if (strcmp(configuration.command, "tenth_pixel") == 0 ) {
     tenth_pixel(configuration.filenames[0]);
   }
-  else if ( strncmp( configuration.command, "second_line", 11 ) == 0 ) {
+  else if ( strcmp( configuration.command, "second_line") == 0 ) {
     second_line(configuration.filenames[0]);
   }
-  else if ( strncmp( configuration.command, "max_pixel", 11 ) == 0 ) {
+  else if ( strcmp( configuration.command, "max_pixel") == 0 ) {
     max_pixel(configuration.filenames[0]);
   }
-  else if ( strncmp( configuration.command, "min_pixel", 11 ) == 0 ) {
+  else if ( strcmp( configuration.command, "min_pixel") == 0 ) {
     min_pixel(configuration.filenames[0]);
   }
-  else if ( strncmp( configuration.command, "print_pixel", 11 ) == 0 ) {
+  else if ( strcmp( configuration.command, "print_pixel") == 0 ) {
     int x = atoi(configuration.arguments[0]);
     int y = atoi(configuration.arguments[1]);
     print_pixel(configuration.filenames[0], x, y);
   } 
-  else if (strncmp(configuration.command, "max_component", 13) == 0) {
+  else if (strcmp(configuration.command, "max_component") == 0) {
     char component = configuration.arguments[0][0]; 
     max_component(configuration.filenames[0], component);
 }
+  else if ( strcmp( configuration.command, "color_red") == 0 ) {
+    color_red(configuration.filenames[0]);
+  }
   return 0;
 }

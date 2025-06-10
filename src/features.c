@@ -169,3 +169,22 @@ void max_component(char *filename, char component){
     }
     printf(" (%d, %d): %d\n", max_x, max_y, max_value);
 }
+
+void color_red(char *filename) {
+    int width, height, channel_count;
+    unsigned char *data;
+    pixelRGB pixel;
+    
+    read_image_data(filename, &data, &width, &height, &channel_count);
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* pixel = get_pixel(data, width, height, channel_count, x, y);
+            pixel->G = 0;
+            pixel->B = 0;
+            set_pixel(data, width, channel_count, x, y, pixel);
+        }
+    }
+    int result = write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);
+}
