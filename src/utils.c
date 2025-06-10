@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-pixelRGB* get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y ){
+pixelRGB * get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y ){
     if(x>=width || y>=height || n<3){
         return NULL;
     }else if(data == NULL){
