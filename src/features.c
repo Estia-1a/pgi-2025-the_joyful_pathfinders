@@ -104,7 +104,6 @@ void max_pixel(char* filename) {
 }
 
 void max_component(char *filename, char component){
-
     printf("max_component %c", component);
 
     unsigned char* data;
@@ -117,10 +116,26 @@ void max_component(char *filename, char component){
     int max_value = -1;
     int max_x = 0;
     int max_y = 0;
-
+   
     for(int i=0; i< height; i++){
         for (int j = 0; j < width; j++) {
+            pixelRGB *px = get_pixel(data, width, height, channels, i, j);
 
+            int valeurmax = 0;
+             if (component == 'R') {
+                valeurmax = (*px).R;
+            } else if (component == 'G') {
+                valeurmax = (*px).G;
+            } else if (component == 'B') {
+                valeurmax = (*px).B;
+            }
+
+            if (valeurmax > max_value) {
+                max_value = valeurmax;
+                max_x = j;
+                max_y = i;
+            }
+        }
     }
-
+    printf(" (%d, %d): %d\n", max_x, max_y, max_value);
 }
