@@ -260,7 +260,7 @@ void color_red(char *filename) {
             pixel->B = 0;
         }
     }
-    int result = write_image_data("image_out.bmp", data, width, height);
+    write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);
 }
 
@@ -275,10 +275,9 @@ void color_green(char *filename) {
             pixelRGB* pixel = get_pixel(data, width, height, channel_count, x, y);
             pixel->R = 0;
             pixel->B = 0;
-            set_pixel(data, width, channel_count, x, y, pixel);
         }
     }
-    int result = write_image_data("image_out.bmp", data, width, height);
+    write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);
 }
 
@@ -293,9 +292,27 @@ void color_blue(char *filename) {
             pixelRGB* pixel = get_pixel(data, width, height, channel_count, x, y);
             pixel->R = 0;
             pixel->G = 0;
-            set_pixel(data, width, channel_count, x, y, pixel);
         }
     }
-    int result = write_image_data("image_out.bmp", data, width, height);
+    write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);
+}
+
+void color_gray(char *filename) {
+    int width, height, channel_count;
+    unsigned char *data;
+   
+    read_image_data(filename, &data, &width, &height, &channel_count);
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* pixel = get_pixel(data, width, height, channel_count, x, y);
+            unsigned char value = (pixel->R + pixel->G + pixel->B)/ 3;
+            pixel->R = value;
+            pixel->G = value;
+            pixel->B = value;
+        }
+    }
+    write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);
 }
