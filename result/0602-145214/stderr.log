@@ -1,0 +1,65 @@
+In file included from /home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.c:2:
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.h:15:1: error: expected ‘;’, identifier or ‘(’ before ‘void’
+   15 | void pixelRGB * get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y );
+      | ^~~~
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.h:15:15: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+   15 | void pixelRGB * get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y );
+      |               ^
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:121: CMakeFiles/freud.dir/src/utils.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+In file included from /home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:5:
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.h:15:1: error: expected ‘;’, identifier or ‘(’ before ‘void’
+   15 | void pixelRGB * get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y );
+      | ^~~~
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.h:15:15: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+   15 | void pixelRGB * get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y );
+      |               ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c: In function ‘max_pixel’:
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:82:5: error: unknown type name ‘pixelRGB’
+   82 |     pixelRGB max_pixel_rgb = {0, 0, 0};  // Fixed: proper variable declaration
+      |     ^~~~~~~~
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:82:34: warning: excess elements in scalar initializer
+   82 |     pixelRGB max_pixel_rgb = {0, 0, 0};  // Fixed: proper variable declaration
+      |                                  ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:82:34: note: (near initialization for ‘max_pixel_rgb’)
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:82:37: warning: excess elements in scalar initializer
+   82 |     pixelRGB max_pixel_rgb = {0, 0, 0};  // Fixed: proper variable declaration
+      |                                     ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:82:37: note: (near initialization for ‘max_pixel_rgb’)
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:92:13: error: unknown type name ‘pixelRGB’
+   92 |             pixelRGB current_pixel = getPixel(data, width, channel_count, x, y);
+      |             ^~~~~~~~
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:92:38: warning: implicit declaration of function ‘getPixel’ [-Wimplicit-function-declaration]
+   92 |             pixelRGB current_pixel = getPixel(data, width, channel_count, x, y);
+      |                                      ^~~~~~~~
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:93:44: error: request for member ‘R’ in something not a structure or union
+   93 |             int current_sum = current_pixel.R + current_pixel.G + current_pixel.B;
+      |                                            ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:93:62: error: request for member ‘G’ in something not a structure or union
+   93 |             int current_sum = current_pixel.R + current_pixel.G + current_pixel.B;
+      |                                                              ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:93:80: error: request for member ‘B’ in something not a structure or union
+   93 |             int current_sum = current_pixel.R + current_pixel.G + current_pixel.B;
+      |                                                                                ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:104:66: error: request for member ‘R’ in something not a structure or union
+  104 |     printf(" (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel_rgb.R, max_pixel_rgb.G, max_pixel_rgb.B);
+      |                                                                  ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:104:83: error: request for member ‘G’ in something not a structure or union
+  104 |     printf(" (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel_rgb.R, max_pixel_rgb.G, max_pixel_rgb.B);
+      |                                                                                   ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:104:100: error: request for member ‘B’ in something not a structure or union
+  104 |     printf(" (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel_rgb.R, max_pixel_rgb.G, max_pixel_rgb.B);
+      |                                                                                                    ^
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+In file included from /home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/main.c:9:
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.h:15:1: error: expected ‘;’, identifier or ‘(’ before ‘void’
+   15 | void pixelRGB * get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y );
+      | ^~~~
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/utils.h:15:15: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+   15 | void pixelRGB * get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y );
+      |               ^
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:107: CMakeFiles/freud.dir/src/main.c.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
