@@ -335,18 +335,21 @@ void color_invert(char *filename) {
     free_image_data(data);
 }
 
-void rotate_cw(char *filename){
-    
-    char *data
+void color_gray_luminance(char *filename) {
     int width, height, channel_count;
-
-    int new_width=height;
-    int new_height=width; /*On créer ici des nouvelles dimensions pour l'image retournée.*/
-
-    for(int y=0; y<height; y++){
-        for(int x=0; x<width; x++){
-            int newx=y;
-            int newy=x
+    unsigned char *data;
+   
+    read_image_data(filename, &data, &width, &height, &channel_count);
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* pixel = get_pixel(data, width, height, channel_count, x, y);
+            unsigned char value = (unsigned char)(0.21 * pixel->R + 0.72 * pixel->G + 0.07 * pixel->B);
+            pixel->R = value;
+            pixel->G = value;
+            pixel->B = value;
         }
     }
+    write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);
 }
