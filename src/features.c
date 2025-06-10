@@ -206,3 +206,9 @@ void min_component(char *filename, char component){
     }
     printf(" (%d, %d): %d\n", min_x, min_y, min_value);
 }
+
+void start_report(char *filename){
+    char*data;
+    int width, height, channels;
+    
+}
