@@ -357,3 +357,27 @@ void color_gray_luminance(char *filename) {
     write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);
 }
+
+void color_desaturate(char *filename) {
+    int width, height, channel_count;
+    unsigned char *data;
+
+    read_image_data(filename, &data, &width, &height, &channel_count);
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB *pixel = get_pixel(data, width, height, channel_count, x, y);
+
+            unsigned char min_val = pixel->R < pixel->G ? (pixel->R < pixel->B ? pixel->R : pixel->B) : (pixel->G < pixel->B ? pixel->G : pixel->B);
+            unsigned char max_val = pixel->R > pixel->G ? (pixel->R > pixel->B ? pixel->R : pixel->B) : (pixel->G > pixel->B ? pixel->G : pixel->B);
+            unsigned char new_val = (min_val + max_val) / 2;
+
+            pixel->R = new_val;
+            pixel->G = new_val;
+            pixel->B = new_val;
+        }
+    }
+
+    write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);
+}
