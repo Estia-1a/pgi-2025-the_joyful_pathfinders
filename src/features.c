@@ -57,20 +57,24 @@ void tenth_pixel(char *source_path){
         printf(": %d, %d, %d", R, G, B);
     }
 }
-void second_line(char* filename) { 
-    printf("second_line");
-
+void second_line(char* filename) {
     unsigned char* data;
-    int R, G, B, formule; 
+    int width, height, channels;
 
-    if (read_image_data(filename, &data, &R, &G, &B) == 0) {
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
         printf("Erreur avec le fichier: %s \n", filename);
+        return;
     }
-    
-    formule = 1*3;
-    R=data[formule], G=data[formule+1], B=data[formule+2];
-    printf(": %d, %d, %d\n", R, G, B);
 
+    int x = 1; 
+    int y = 1; 
+    int index = (y * width + x) * channels;
+
+    int R = data[index];
+    int G = data[index + 1];
+    int B = data[index + 2];
+
+    printf("second_line: %d, %d, %d\n", R, G, B);
 }
 
 void max_pixel(char* filename) {
