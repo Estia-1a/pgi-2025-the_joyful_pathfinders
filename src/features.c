@@ -67,8 +67,8 @@ void second_line(char* filename) {
         return;
     }
 
-    int x = 1; 
-    int y = 1; 
+    int x = 0;
+    int y = 1;
     int index = (y * width + x) * channels;
 
     int R = data[index];
