@@ -24,4 +24,5 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
 void scale_nearest(char* filename, float scale);
 void scale_bilinear(char* filename, float scale);
 void rotate_cw(char *filename);
+void mirror_horizontal(char* filename);
 #endif
