@@ -426,21 +426,32 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
     free(cropped);
 }
 
-void rotate_cw(char *filename){
+void rotate_cw(char* filename){
     unsigned char* data;
     int width, height, channels;
 
+    read_image_data(filename, &data, &width, &height, &channels);
+
     int new_width=height;
     int new_height=width;
+
+    unsigned char* rotated_image=malloc(new_width*new_height*channels); /*On créer un nouveau tableau pour contenir l'image tournée*/
 
     int x=0;
     int y=0;
     for (y=0; y<height ; y++){
         for(x=0 ; x<width ; x++){
             for(int c=0; c<channels; c++){
-                int
+                int new_x;
+                new_x= height-1-y;
+                int new_y;
+                new_y = x;
+
+                rotated_image[(new_y*new_width+new_x)*channels+c]= data[(y * width + x) * channels + c];
+
             }
         }
     }
+     write_image_data("image_out.bmp", rotated_image, new_width, new_height); /*Pour ecrire la nouvelle image*/
 
 }
