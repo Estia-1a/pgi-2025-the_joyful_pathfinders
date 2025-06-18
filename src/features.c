@@ -266,7 +266,6 @@ void color_red(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_green(char *filename) {
@@ -283,7 +282,6 @@ void color_green(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_blue(char *filename) {
@@ -300,7 +298,6 @@ void color_blue(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_gray(char *filename) {
@@ -319,7 +316,6 @@ void color_gray(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_invert(char *filename) {
@@ -337,7 +333,6 @@ void color_invert(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_gray_luminance(char *filename) {
@@ -356,7 +351,6 @@ void color_gray_luminance(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_desaturate(char *filename) {
@@ -380,7 +374,6 @@ void color_desaturate(char *filename) {
     }
 
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void scale_crop(char* filename, int center_x, int center_y, int crop_width, int crop_height) {
