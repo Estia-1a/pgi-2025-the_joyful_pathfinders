@@ -395,30 +395,36 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
     int start_x = center_x - crop_width / 2;
     int start_y = center_y - crop_height / 2;
 
-    int offset_x = (start_x < 0) ? -start_x : 0;
-    int offset_y = (start_y < 0) ? -start_y : 0;
+    int actual_width = crop_width;
+    int actual_height = crop_height;
 
-    start_x = (start_x < 0) ? 0 : start_x;
-    start_y = (start_y < 0) ? 0 : start_y;
+    if (start_x < 0) {
+        actual_width += start_x;
+        start_x = 0;
+    }
+    if (start_y < 0) {
+        actual_height += start_y;
+        start_y = 0;
+    }
+    if (start_x + actual_width > width) {
+        actual_width = width - start_x;
+    }
+    if (start_y + actual_height > height) {
+        actual_height = height - start_y;
+    }
 
-    int max_width = (start_x + crop_width > width) ? width - start_x : crop_width;
-    int max_height = (start_y + crop_height > height) ? height - start_y : crop_height;
+    unsigned char* cropped = malloc(crop_width * crop_height * channels);
 
-    unsigned char* cropped = calloc(crop_width * crop_height * channels, sizeof(unsigned char));
-
-    for (int y = 0; y < max_height; y++) {
-        for (int x = 0; x < max_width; x++) {
-            pixelRGB* src_pixel = get_pixel(data, width, height, channels, start_x + x, start_y + y);
-            if (src_pixel) {
-                pixelRGB p = *src_pixel;
-                set_pixel(cropped, crop_width, channels, x + offset_x, y + offset_y, p);
+    for (int y = 0; y < actual_height; y++) {
+        for (int x = 0; x < actual_width; x++) {
+            pixelRGB* src = get_pixel(data, width, height, channels, start_x + x, start_y + y);
+            if (src) {
+                set_pixel(cropped, crop_width, channels, x, y, *src);
             }
         }
     }
 
     write_image_data("image_out.bmp", cropped, crop_width, crop_height);
-    free_image_data(data);
-    free(cropped);
 }
 
 void scale_nearest(char* filename, float scale) {
