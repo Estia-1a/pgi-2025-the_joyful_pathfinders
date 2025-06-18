@@ -405,11 +405,6 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
     int max_height = (start_y + crop_height > height) ? height - start_y : crop_height;
 
     unsigned char* cropped = calloc(crop_width * crop_height * channels, sizeof(unsigned char));
-    if (!cropped) {
-        printf("Erreur d’allocation mémoire\n");
-        free_image_data(data);
-        return;
-    }
 
     for (int y = 0; y < max_height; y++) {
         for (int x = 0; x < max_width; x++) {
@@ -426,32 +421,137 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
     free(cropped);
 }
 
-void rotate_cw(char* filename){
+void rotate_cw(char *filename){
     unsigned char* data;
-    int width, height, channels;
 
-    read_image_data(filename, &data, &width, &height, &channels);
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+        printf("Erreur : impossible de lire l’image.\n");
+        return;
+    }
+
+    int new_width = (int)(width * scale);
+    int new_height = (int)(height * scale);
+
+    unsigned char* resized = malloc(new_width * new_height * channels);
+    for (int y = 0; y < new_height; y++) {
+        for (int x = 0; x < new_width; x++) {
+            int src_x = (int)((float)x / scale);
+            int src_y = (int)((float)y / scale);
+
+            if (src_x >= width) src_x = width - 1;
+            if (src_y >= height) src_y = height - 1;
+
+            pixelRGB* p = get_pixel(data, width, height, channels, src_x, src_y);
+            set_pixel(resized, new_width, channels, x, y, *p);
+        }
+    }
+    write_image_data("image_out.bmp", resized, new_width, new_height);
+    free_image_data(data);
+    free(resized);
+}
+
+void scale_bilinear(char* filename, float scale) {
+    int width, height, channels;
 
     int new_width=height;
     int new_height=width;
-
-    unsigned char* rotated_image=malloc(new_width*new_height*channels); /*On créer un nouveau tableau pour contenir l'image tournée*/
 
     int x=0;
     int y=0;
     for (y=0; y<height ; y++){
         for(x=0 ; x<width ; x++){
             for(int c=0; c<channels; c++){
-                int new_x;
-                new_x= height-1-y;
-                int new_y;
-                new_y = x;
-
-                rotated_image[(new_y*new_width+new_x)*channels+c]= data[(y * width + x) * channels + c];
-
+                int
             }
         }
     }
-     write_image_data("image_out.bmp", rotated_image, new_width, new_height); /*Pour ecrire la nouvelle image*/
 
+}
+void scale_nearest(char* filename, float scale) {
+    int width, height, channels;
+    unsigned char* data;
+
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+        printf("Erreur : impossible de lire l’image.\n");
+        return;
+    }
+
+    int new_width = (int)(width * scale);
+    int new_height = (int)(height * scale);
+
+    unsigned char* resized = malloc(new_width * new_height * channels);
+    for (int y = 0; y < new_height; y++) {
+        for (int x = 0; x < new_width; x++) {
+            int src_x = (int)((float)x / scale);
+            int src_y = (int)((float)y / scale);
+
+            if (src_x >= width) src_x = width - 1;
+            if (src_y >= height) src_y = height - 1;
+
+            pixelRGB* p = get_pixel(data, width, height, channels, src_x, src_y);
+            set_pixel(resized, new_width, channels, x, y, *p);
+        }
+    }
+    write_image_data("image_out.bmp", resized, new_width, new_height);
+    free_image_data(data);
+    free(resized);
+}
+
+void scale_bilinear(char* filename, float scale) {
+    int width, height, channels;
+    unsigned char* data;
+
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+        printf("Erreur : impossible de lire l’image.\n");
+        return;
+    }
+
+    int new_width = width * scale;
+    int new_height = height * scale;
+    unsigned char* output = malloc(new_width * new_height * channels);
+
+    for (int y = 0; y < new_height; y++) {
+        for (int x = 0; x < new_width; x++) {
+            float gx = x / scale;
+            float gy = y / scale;
+
+            int x1 = (int)gx;
+            int y1 = (int)gy;
+            int x2 = x1 + 1;
+            int y2 = y1 + 1;
+
+            float dx = gx - x1;
+            float dy = gy - y1;
+
+            pixelRGB q11 = *get_pixel(data, width, height, channels, x1, y1);
+            pixelRGB q21 = *get_pixel(data, width, height, channels, x2 >= width ? width - 1 : x2, y1);
+            pixelRGB q12 = *get_pixel(data, width, height, channels, x1, y2 >= height ? height - 1 : y2);
+            pixelRGB q22 = *get_pixel(data, width, height, channels, x2 >= width ? width - 1 : x2, y2 >= height ? height - 1 : y2);
+            pixelRGB result;
+            result.R = (unsigned char)(
+                (1 - dx) * (1 - dy) * q11.R +
+                dx * (1 - dy) * q21.R +
+                (1 - dx) * dy * q12.R +
+                dx * dy * q22.R);
+
+            result.G = (unsigned char)(
+                (1 - dx) * (1 - dy) * q11.G +
+                dx * (1 - dy) * q21.G +
+                (1 - dx) * dy * q12.G +
+                dx * dy * q22.G);
+
+            result.B = (unsigned char)(
+                (1 - dx) * (1 - dy) * q11.B +
+                dx * (1 - dy) * q21.B +
+                (1 - dx) * dy * q12.B +
+                dx * dy * q22.B);
+
+            set_pixel(output, new_width, channels, x, y, result);
+        }
+    }
+    write_image_data("image_out.bmp", output, new_width, new_height);
+    free_image_data(data);
+    free(output);
+    printf("Image originale : %dx%d\n", width, height);
+    printf("Image redimensionnée : %dx%d (échelle %.2f)\n", new_width, new_height, scale);
 }
