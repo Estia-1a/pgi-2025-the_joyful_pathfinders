@@ -509,6 +509,7 @@ void scale_bilinear(char* filename, float scale) {
     printf("Image originale : %dx%d\n", width, height);
     printf("Image redimensionnée : %dx%d (échelle %.2f)\n", new_width, new_height, scale);
 }
+
 void rotate_cw(char* filename){
     unsigned char* data;
     int width, height, channels;
@@ -529,6 +530,35 @@ void rotate_cw(char* filename){
                 new_x= height-1-y;
                 int new_y;
                 new_y = x;
+
+                rotated_image[(new_y*new_width+new_x)*channels+c]= data[(y * width + x) * channels + c];
+
+            }
+        }
+    }
+     write_image_data("image_out.bmp", rotated_image, new_width, new_height); /*Pour ecrire la nouvelle image*/
+}
+
+void rotate_acw(char* filename){
+    unsigned char* data;
+    int width, height, channels;
+
+    read_image_data(filename, &data, &width, &height, &channels);
+
+    int new_width=height;
+    int new_height=width;
+
+    unsigned char* rotated_image=malloc(new_width*new_height*channels); /*On créer un nouveau tableau pour contenir l'image tournée*/
+
+    int x=0;
+    int y=0;
+    for (y=0; y<height ; y++){
+        for(x=0 ; x<width ; x++){
+            for(int c=0; c<channels; c++){
+                int new_x;
+                new_x= y;
+                int new_y;
+                new_y = width-1-x;
 
                 rotated_image[(new_y*new_width+new_x)*channels+c]= data[(y * width + x) * channels + c];
 
