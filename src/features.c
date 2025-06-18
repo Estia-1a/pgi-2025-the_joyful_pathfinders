@@ -212,7 +212,7 @@ void min_component(char *filename, char component){
     printf(" (%d, %d): %d\n", min_x, min_y, min_value);
 }
 
-void start_report(char *filename){
+void stat_report(char *filename){
 
 /*ouvrir le fichier*/
     FILE *f = fopen("stat_report.txt", "w");
@@ -266,7 +266,6 @@ void color_red(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_green(char *filename) {
@@ -283,7 +282,6 @@ void color_green(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_blue(char *filename) {
@@ -300,7 +298,6 @@ void color_blue(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_gray(char *filename) {
@@ -319,7 +316,6 @@ void color_gray(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_invert(char *filename) {
@@ -337,7 +333,6 @@ void color_invert(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_gray_luminance(char *filename) {
@@ -356,7 +351,6 @@ void color_gray_luminance(char *filename) {
         }
     }
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void color_desaturate(char *filename) {
@@ -380,7 +374,6 @@ void color_desaturate(char *filename) {
     }
 
     write_image_data("image_out.bmp", data, width, height);
-    free_image_data(data);
 }
 
 void scale_crop(char* filename, int center_x, int center_y, int crop_width, int crop_height) {
@@ -441,8 +434,6 @@ void scale_nearest(char* filename, float scale) {
         }
     }
     write_image_data("image_out.bmp", resized, new_width, new_height);
-    free_image_data(data);
-    free(resized);
 }
 
 void scale_bilinear(char* filename, float scale) {
@@ -498,8 +489,6 @@ void scale_bilinear(char* filename, float scale) {
         }
     }
     write_image_data("image_out.bmp", output, new_width, new_height);
-    free_image_data(data);
-    free(output);
 }
 
 void rotate_cw(char* filename){
