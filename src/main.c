@@ -80,10 +80,6 @@ else if (strcmp(configuration.command, "color_desaturate") == 0) {
     color_desaturate(configuration.filenames[0]);
 }
 else if (strcmp(configuration.command, "scale_crop") == 0) {
-    if (argc < 9) {
-        printf("Usage: ./freud.exe -f image -c scale_crop center_x center_y width height\n");
-        return 1;
-    }
     int center_x = atoi(argv[5]);
     int center_y = atoi(argv[6]);
     int crop_width = atoi(argv[7]);
