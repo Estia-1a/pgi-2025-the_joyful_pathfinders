@@ -58,6 +58,10 @@ int main(int argc, char **argv) {
     char component = configuration.arguments[0][0]; 
     max_component(configuration.filenames[0], component);
 }
+ else if (strcmp(configuration.command, "min_component") == 0) {
+    char component = configuration.arguments[0][0]; 
+    min_component(configuration.filenames[0], component);
+}
 else if ( strcmp( configuration.command, "color_red") == 0 ) {
   color_red(configuration.filenames[0]);
 }

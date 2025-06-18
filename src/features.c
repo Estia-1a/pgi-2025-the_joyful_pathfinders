@@ -185,7 +185,7 @@ void min_component(char *filename, char component){
             printf("Erreur avec le fichier: %s\n", filename);
         }
 
-    int min_value = 256; /*On a repris la même structure que pour max_compennet mais on commence ici à 256.*/
+    int min_value = 255; /*On a repris la même structure que pour max_compennet mais on commence ici à 256.*/
     int min_x = 0;
     int min_y = 0;
    
