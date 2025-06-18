@@ -212,7 +212,7 @@ void min_component(char *filename, char component){
     printf(" (%d, %d): %d\n", min_x, min_y, min_value);
 }
 
-void start_report(char *filename){
+void stat_report(char *filename){
 
 /*ouvrir le fichier*/
     FILE *f = fopen("stat_report.txt", "w");
