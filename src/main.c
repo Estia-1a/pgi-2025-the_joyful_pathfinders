@@ -94,8 +94,9 @@ else if (strcmp(configuration.command, "scale_nearest") == 0) {
     float scale = atof(argv[5]);
     scale_nearest(configuration.filenames[0], scale);
 }
-  return 0;
+else if (strcmp(configuration.command, "scale_bilinear") == 0) {
+    float scale = atof(argv[5]);
+    scale_bilinear(configuration.filenames[0], scale);
 }
-else if (strncmp(configuration.command, "rotate_cw", 9) == 0) {
-    rotate_cw(configuration.filenames[0]);
+  return 0;
 }
