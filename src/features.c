@@ -506,8 +506,6 @@ void scale_bilinear(char* filename, float scale) {
     write_image_data("image_out.bmp", output, new_width, new_height);
     free_image_data(data);
     free(output);
-    printf("Image originale : %dx%d\n", width, height);
-    printf("Image redimensionnée : %dx%d (échelle %.2f)\n", new_width, new_height, scale);
 }
 
 void rotate_cw(char* filename){
