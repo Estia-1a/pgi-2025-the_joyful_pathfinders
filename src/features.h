@@ -21,5 +21,6 @@ void color_invert(char *filename);
 void color_gray_luminance(char *filename);
 void color_desaturate(char *filename);
 void scale_crop(char* filename, int center_x, int center_y, int crop_width, int crop_height);
+void scale_nearest(char* filename, float scale);
 void rotate_cw(char *filename);
 #endif
