@@ -1,0 +1,13 @@
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/main.c: In function ‘main’:
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/main.c:66:5: warning: implicit declaration of function ‘start_report’; did you mean ‘stat_report’? [-Wimplicit-function-declaration]
+   66 |     start_report(configuration.filenames[0]);
+      |     ^~~~~~~~~~~~
+      |     stat_report
+/usr/bin/ld: CMakeFiles/freud.dir/src/main.c.o: in function `main':
+main.c:(.text.startup+0x43e): undefined reference to `start_report'
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:151: freud] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
