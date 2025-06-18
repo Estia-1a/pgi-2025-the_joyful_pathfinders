@@ -96,3 +96,6 @@ else if (strcmp(configuration.command, "scale_nearest") == 0) {
 }
   return 0;
 }
+else if (strncmp(configuration.command, "rotate_cw", 9) == 0) {
+    rotate_cw(configuration.filenames[0]);
+}
