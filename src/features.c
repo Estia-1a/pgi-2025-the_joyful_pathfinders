@@ -453,8 +453,6 @@ void scale_nearest(char* filename, float scale) {
         }
     }
     write_image_data("image_out.bmp", resized, new_width, new_height);
-    free_image_data(data);
-    free(resized);
 }
 
 void scale_bilinear(char* filename, float scale) {
@@ -510,8 +508,6 @@ void scale_bilinear(char* filename, float scale) {
         }
     }
     write_image_data("image_out.bmp", output, new_width, new_height);
-    free_image_data(data);
-    free(output);
 }
 
 void rotate_cw(char* filename){
