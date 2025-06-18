@@ -1,0 +1,17 @@
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c: In function ‘rotate_cw’:
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:437:13: error: expected identifier or ‘(’ before ‘}’ token
+  437 |             }
+      |             ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/features.c:471:1: error: expected declaration or statement at end of input
+  471 | }
+      | ^
+/home/runner/work/pgi-2025-the_joyful_pathfinders/pgi-2025-the_joyful_pathfinders/src/main.c:99:1: error: expected identifier or ‘(’ before ‘else’
+   99 | else if (strncmp(configuration.command, "rotate_cw", 9) == 0) {
+      | ^~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:107: CMakeFiles/freud.dir/src/main.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
