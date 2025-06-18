@@ -26,4 +26,5 @@ void scale_bilinear(char* filename, float scale);
 void rotate_cw(char *filename);
 void rotate_acw(char *filename);
 void mirror_horizontal(char* filename);
+void mirror_vertical(char* filename);
 #endif
