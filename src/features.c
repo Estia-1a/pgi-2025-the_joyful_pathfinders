@@ -394,37 +394,25 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
 
     int start_x = center_x - crop_width / 2;
     int start_y = center_y - crop_height / 2;
+    int real_start_x = (start_x < 0) ? 0 : start_x;
+    int real_start_y = (start_y < 0) ? 0 : start_y;
+    int real_end_x = center_x + crop_width / 2;
+    int real_end_y = center_y + crop_height / 2;
 
-    int actual_width = crop_width;
-    int actual_height = crop_height;
+    if (real_end_x > width) real_end_x = width;
+    if (real_end_y > height) real_end_y = height;
 
-    if (start_x < 0) {
-        actual_width += start_x;
-        start_x = 0;
-    }
-    if (start_y < 0) {
-        actual_height += start_y;
-        start_y = 0;
-    }
-    if (start_x + actual_width > width) {
-        actual_width = width - start_x;
-    }
-    if (start_y + actual_height > height) {
-        actual_height = height - start_y;
-    }
+    int real_width = real_end_x - real_start_x;
+    int real_height = real_end_y - real_start_y;
+    unsigned char* cropped = malloc(real_width * real_height * channels);
 
-    unsigned char* cropped = malloc(crop_width * crop_height * channels);
-
-    for (int y = 0; y < actual_height; y++) {
-        for (int x = 0; x < actual_width; x++) {
-            pixelRGB* src = get_pixel(data, width, height, channels, start_x + x, start_y + y);
-            if (src) {
-                set_pixel(cropped, crop_width, channels, x, y, *src);
-            }
+    for (int y = 0; y < real_height; y++) {
+        for (int x = 0; x < real_width; x++) {
+            pixelRGB* px = get_pixel(data, width, height, channels, real_start_x + x, real_start_y + y);
+            set_pixel(cropped, real_width, channels, x, y, *px);
         }
     }
-
-    write_image_data("image_out.bmp", cropped, crop_width, crop_height);
+    write_image_data("image_out.bmp", cropped, real_width, real_height);
 }
 
 void scale_nearest(char* filename, float scale) {
