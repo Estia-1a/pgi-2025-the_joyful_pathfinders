@@ -104,5 +104,8 @@ int main(int argc, char **argv) {
       float scale = atof(argv[5]);
       scale_bilinear(configuration.filenames[0], scale);
   }
+else if (strcmp(configuration.command, "mirror_horizontal") == 0) {
+    mirror_horizontal(configuration.filenames[0]);
+}
 return 0;
 }

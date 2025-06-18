@@ -539,6 +539,27 @@ void rotate_cw(char* filename){
      write_image_data("image_out.bmp", rotated_image, new_width, new_height); /*Pour ecrire la nouvelle image*/
 }
 
+void mirror_horizontal(char* filename) {
+    int width, height, channels;
+    unsigned char* data;
+
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+        printf("Erreur : impossible de lire l'image\n");
+        return;
+    }
+
+    unsigned char* mirrored = malloc(width * height * channels);
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int src_x = width - 1 - x;
+            pixelRGB* src = get_pixel(data, width, height, channels, src_x, y);
+            set_pixel(mirrored, width, channels, x, y, *src);
+        }
+    }
+
+    write_image_data("image_out.bmp", mirrored, width, height);
+}
+
 void rotate_acw(char* filename){
     unsigned char* data;
     int width, height, channels;
