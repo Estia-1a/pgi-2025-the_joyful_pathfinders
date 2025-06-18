@@ -405,11 +405,6 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
     int max_height = (start_y + crop_height > height) ? height - start_y : crop_height;
 
     unsigned char* cropped = calloc(crop_width * crop_height * channels, sizeof(unsigned char));
-    if (!cropped) {
-        printf("Erreur d’allocation mémoire\n");
-        free_image_data(data);
-        return;
-    }
 
     for (int y = 0; y < max_height; y++) {
         for (int x = 0; x < max_width; x++) {
@@ -424,4 +419,34 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
     write_image_data("image_out.bmp", cropped, crop_width, crop_height);
     free_image_data(data);
     free(cropped);
+}
+
+void scale_nearest(char* filename, float scale) {
+    int width, height, channels;
+    unsigned char* data;
+
+    if (read_image_data(filename, &data, &width, &height, &channels) == 0) {
+        printf("Erreur : impossible de lire l’image.\n");
+        return;
+    }
+
+    int new_width = (int)(width * scale);
+    int new_height = (int)(height * scale);
+
+    unsigned char* resized = malloc(new_width * new_height * channels);
+    for (int y = 0; y < new_height; y++) {
+        for (int x = 0; x < new_width; x++) {
+            int src_x = (int)((float)x / scale);
+            int src_y = (int)((float)y / scale);
+
+            if (src_x >= width) src_x = width - 1;
+            if (src_y >= height) src_y = height - 1;
+
+            pixelRGB* p = get_pixel(data, width, height, channels, src_x, src_y);
+            set_pixel(resized, new_width, channels, x, y, *p);
+        }
+    }
+    write_image_data("image_out.bmp", resized, new_width, new_height);
+    free_image_data(data);
+    free(resized);
 }
