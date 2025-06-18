@@ -425,3 +425,22 @@ void scale_crop(char* filename, int center_x, int center_y, int crop_width, int 
     free_image_data(data);
     free(cropped);
 }
+
+void rotate_cw(char *filename){
+    unsigned char* data;
+    int width, height, channels;
+
+    int new_width=height;
+    int new_height=width;
+
+    int x=0;
+    int y=0;
+    for (y=0; y<height ; y++){
+        for(x=0 ; x<width ; x++){
+            for(int c=0; c<channels; c++){
+                int
+            }
+        }
+    }
+
+}
