@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
       min_component(configuration.filenames[0], component);
   }
   else if (strcmp(configuration.command, "stat_report") == 0) {
-    start_report(configuration.filenames[0]);
+    stat_report(configuration.filenames[0]);
   }
   else if ( strcmp( configuration.command, "color_red") == 0 ) {
     color_red(configuration.filenames[0]);
